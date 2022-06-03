@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Appkadai</title>
+    <title>Welcome!</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
   </head>
 
   <body>
+    <header>
+      <h1 class="headline">
+        <a>野球について語ろう！</a>
+      </h1>
+     </header>
     <%= yield %>
+    <footer class="footer">
+  　　　<p>Copyright © 2022 ツイってね</p>
+　　 </footer>
   </body>
 </html>
