@@ -9,12 +9,16 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    if @post.save
-       redirect_to posts_path, notice: "つぶやきを作成しました！"
-    else
+    if params[:back]
       render :new
+    else
+      if @post.save
+        redirect_to posts_path, notice: "つぶやきを作成しました！"
+      else
+        render :new
     end
-  end
+   end
+ end
 
   def show
     @post = Post.find(params[:id])
@@ -32,23 +36,24 @@ class PostsController < ApplicationController
       render :edit
     end
   end
-  
+
    def destroy
      @post = Post.find(params[:id])
      if @post.destroy
-     redirect_to posts_path, notice:"つぶやきを削除しました！"
+       redirect_to posts_path, notice:"つぶやきを削除しました！"
    else
      render :index
    end
+ end
+
+ def confirm
+   @post = Post.new(post_params)
+   render :new if @post.invalid?
  end
 
   private
 
   def post_params
     params.require(:post).permit(:content)
-  end
-
-  def set_post
-    @post = Post.find(params[:id])
   end
 end
